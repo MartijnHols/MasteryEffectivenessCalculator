@@ -35,8 +35,7 @@ const removeBuffEvent = (spellId: number, others?: Partial<RemoveBuffEvent>): Re
 });
 
 describe('buffUptimeTotal', () => {
-  const info: Info = {
-    abilities: [],
+  const info: Pick<Info, 'playerId' | 'fightStart' | 'fightEnd'> = {
     playerId: 1,
     fightStart: 0,
     fightEnd: 1000,

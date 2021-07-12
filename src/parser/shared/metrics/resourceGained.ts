@@ -29,13 +29,31 @@ export default metric(resourceGained);
 
 export const sumResourceGained = (
   resourcesGained: ResourcesGained,
-  playerId: number,
   resourceId: number,
+  playerId: number,
 ) =>
   Object.values(resourcesGained[playerId]?.[resourceId]).reduce((sum, item) => sum + item, 0) || 0;
-export const sumResourceGainedBySpell = (
+export const sumResourceGainedByPlayerBySpell = (
   resourcesGained: ResourcesGained,
-  playerId: number,
   resourceId: number,
+  playerId: number,
   spellId: number,
 ) => resourcesGained[playerId]?.[resourceId]?.[spellId] || 0;
+export const sumResourceGainedByPlayerPerSpell = (
+  resourcesGained: ResourcesGained,
+  resourceId: number,
+  playerId: number,
+) => resourcesGained[playerId]?.[resourceId];
+export const sumResourceGainedBySpell = (
+  resourcesGained: ResourcesGained,
+  resourceId: number,
+  spellId: number,
+) => {
+  let sum = 0;
+  for (const targetId in resourcesGained) {
+    const resourcesGainedBySpell = resourcesGained[targetId][resourceId]?.[spellId] || 0;
+    sum += resourcesGainedBySpell;
+  }
+
+  return sum;
+};

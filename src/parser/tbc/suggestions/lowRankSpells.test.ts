@@ -31,6 +31,9 @@ describe('lowRankSpells', () => {
     playerId: 1,
     fightStart: 0,
     fightEnd: 0,
+    fightDuration: 0,
+    fightId: 1,
+    reportCode: 'test',
   };
 
   it('starts empty', () => {

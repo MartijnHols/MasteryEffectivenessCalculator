@@ -6,6 +6,9 @@ export interface Info {
   abilities: Ability[];
   fightStart: number;
   fightEnd: number;
+  fightDuration: number;
+  fightId: number;
+  reportCode: string;
 }
 export interface FunctionalStatisticProps {
   events: AnyEvent[];

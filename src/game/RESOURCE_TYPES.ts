@@ -24,7 +24,7 @@ const RESOURCE_TYPES: { [key: string]: Resource } = {
     url: 'rage',
   },
   FOCUS: {
-    // Hunter
+    // Hunter and Hunter pet
     id: 2,
     name: 'Focus',
     icon: 'ability_hunter_focusfire',

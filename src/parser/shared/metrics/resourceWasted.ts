@@ -12,7 +12,7 @@ interface ResourcesWasted {
 /**
  * Returns an object with the total resource wasted per resource.
  */
-const resourceWasted = (events: AnyEvent[], playerId: number) =>
+const resourceWasted = (events: AnyEvent[]) =>
   events.reduce<ResourcesWasted>((obj, event) => {
     if (event.type === EventType.Energize) {
       obj[event.targetID] = obj[event.targetID] || {};
@@ -28,13 +28,31 @@ export default metric(resourceWasted);
 
 export const sumResourceWasted = (
   resourcesWasted: ResourcesWasted,
-  playerId: number,
   resourceId: number,
+  playerId: number,
 ) =>
   Object.values(resourcesWasted[playerId]?.[resourceId]).reduce((sum, item) => sum + item, 0) || 0;
-export const sumResourceWastedBySpell = (
+export const sumResourceWastedByPlayerBySpell = (
   resourcesWasted: ResourcesWasted,
-  playerId: number,
   resourceId: number,
+  playerId: number,
   spellId: number,
 ) => resourcesWasted[playerId]?.[resourceId]?.[spellId] || 0;
+export const sumResourceWastedByPlayerPerSpell = (
+  resourcesWasted: ResourcesWasted,
+  resourceId: number,
+  playerId: number,
+) => resourcesWasted[playerId]?.[resourceId];
+export const sumResourceWastedBySpell = (
+  resourcesWasted: ResourcesWasted,
+  resourceId: number,
+  spellId: number,
+) => {
+  let sum = 0;
+  for (const targetId in resourcesWasted) {
+    const resourcesWastedBySpell = resourcesWasted[targetId][resourceId]?.[spellId] || 0;
+    sum += resourcesWastedBySpell;
+  }
+
+  return sum;
+};

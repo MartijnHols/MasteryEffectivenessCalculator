@@ -19,11 +19,8 @@ const castEvent = (id: number): CastEvent => ({
 });
 
 describe('castCount', () => {
-  const info: Info = {
-    abilities: [],
+  const info: Pick<Info, 'playerId'> = {
     playerId: 1,
-    fightStart: 0,
-    fightEnd: 0,
   };
 
   it('starts empty', () => {

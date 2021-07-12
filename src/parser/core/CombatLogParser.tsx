@@ -700,6 +700,9 @@ class CombatLogParser {
       playerId: this.selectedCombatant.id,
       fightStart: this.fight.start_time,
       fightEnd: this.fight.end_time,
+      fightDuration: this.fight.end_time - this.fight.start_time,
+      fightId: this.fight.id,
+      reportCode: this.report.code,
     };
 
     console.time('functional suggestions');

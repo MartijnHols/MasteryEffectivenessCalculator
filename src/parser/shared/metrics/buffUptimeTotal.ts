@@ -7,7 +7,11 @@ import buffApplications from './buffApplications';
  * Returns the total uptime of the buff. Any overlap is included (so the
  * total may be longer than the fight duration).
  */
-const buffUptimeTotal = (events: AnyEvent[], info: Info, spellId: number) => {
+const buffUptimeTotal = (
+  events: AnyEvent[],
+  info: Pick<Info, 'playerId' | 'fightStart' | 'fightEnd'>,
+  spellId: number,
+) => {
   const { playerId, fightStart, fightEnd } = info;
   const applications = buffApplications(events);
   const buffHistory = applications[spellId]?.[playerId];

@@ -7,7 +7,11 @@ import buffApplications from './buffApplications';
  * Returns the distinct uptime of the buff. Overlap is ignored (so the total
  * will never be longer than fight duration).
  */
-const buffUptimeDistinct = (events: AnyEvent[], info: Info, spellId: number) => {
+const buffUptimeDistinct = (
+  events: AnyEvent[],
+  info: Pick<Info, 'playerId' | 'fightStart' | 'fightEnd'>,
+  spellId: number,
+) => {
   const { playerId, fightStart, fightEnd } = info;
   const applications = buffApplications(events);
   const buffHistory = applications[spellId]?.[playerId];
