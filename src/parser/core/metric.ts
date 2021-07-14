@@ -1,4 +1,4 @@
-import { AnyEvent } from './Events';
+import { AnyEvent, CombatantInfoEvent } from './Events';
 import Ability from './modules/Ability';
 
 export interface Info {
@@ -6,6 +6,8 @@ export interface Info {
   abilities: Ability[];
   fightStart: number;
   fightEnd: number;
+  selectedCombatant: CombatantInfoEvent;
+  combatants: { [playerId: number]: CombatantInfoEvent };
 }
 export interface FunctionalStatisticProps {
   events: AnyEvent[];
