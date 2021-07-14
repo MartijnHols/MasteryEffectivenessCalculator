@@ -812,7 +812,7 @@ export interface Conduit {
 
 export interface CombatantInfoEvent extends Event<EventType.CombatantInfo> {
   player: PlayerInfo;
-  expansion: 'tbc' | string;
+  expansion: 'tbc' | 'shadowlands' | string;
   pin: string;
   sourceID: number;
   gear: Item[];
@@ -844,9 +844,27 @@ export interface CombatantInfoEvent extends Event<EventType.CombatantInfo> {
   pvpTalents: Spell[];
   covenantID: number;
   soulbindID: number;
-  artifact?: SoulbindTrait[]; //WCL keeps Soulbind Abilities in the artifact field - we keep this temporarily before allocating to soulbindTraits
+  /**
+   * Represents expansion specific traits
+   * Legion: Artifact Traits
+   * BFA: Azerite
+   * Shadowlands: Soulbinds
+   */
+  customPowerSet?: any[]; // will be copied into field with better name / type depending on expansion
+  /**
+   * Represents expansion specific traits
+   * BFA: Essences
+   * Shadowlands: Conduits
+   */
+  secondaryCustomPowerSet?: any[]; // will be copied into field with better name / type depending on expansion
+  /**
+   * Represents expansion specific traits
+   * Shadowlands: Anima Powers
+   */
+  tertiaryCustomPowerSet?: any[]; // will be copied into field with better name / type depending on expansion
+  /** Filled from customPowerSet for Shadowlands logs */
   soulbindTraits?: SoulbindTrait[];
-  heartOfAzeroth?: Conduit[]; //WCL keeps class specific conduits in the heartOfAzeroth field - we keep this temporarily before allocating to conduits
+  /** Filled from secondaryCustomPowerSet for Shadowlands logs */
   conduits?: Conduit[];
   error?: any; //TODO: Verify, is this a bool? string?
 }

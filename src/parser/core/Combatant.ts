@@ -91,15 +91,10 @@ class Combatant extends Entity {
       (player: PlayerInfo) => player.id === combatantInfo.sourceID,
     );
 
-    //TODO - verify if this is ever fixed on WCL side
-    if (!combatantInfo.soulbindTraits) {
-      combatantInfo.soulbindTraits = combatantInfo.artifact;
+    if (combatantInfo.expansion === 'shadowlands') {
+      combatantInfo.soulbindTraits = combatantInfo.customPowerSet;
+      combatantInfo.conduits = combatantInfo.secondaryCustomPowerSet;
     }
-    if (!combatantInfo.conduits) {
-      combatantInfo.conduits = combatantInfo.heartOfAzeroth;
-    }
-    delete combatantInfo.artifact;
-    delete combatantInfo.heartOfAzeroth;
 
     this._combatantInfo = {
       // In super rare cases `playerInfo` can be undefined, not taking this

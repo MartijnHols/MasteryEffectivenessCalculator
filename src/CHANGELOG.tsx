@@ -9,6 +9,7 @@ import React from 'react';
 
 // prettier-ignore
 export default [
+  change(date(2021, 7, 14), 'Updated to handle changes to combatantinfo API, allowing Conduit and Soulbind stats to work again.', Sref),
   change(date(2021, 7, 4), 'Fixed a bug where erroneous costs could be assigned to pre-cast spells', Sref),
   change(date(2021, 7, 1), 'Clarify the error shown when a character has no analysis available (e.g. for TBC reports).', Zerotorescue),
   change(date(2021, 6, 29), 'Added Mountaineer Racial to Highmountain Taurens and the same to StatTracker', Soulhealer95),
